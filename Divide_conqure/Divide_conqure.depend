@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1497677170 source:c:\users\shaibal\documents\divide_conqure\goshagu.cpp
+	<cstdio>
+
+1497677826 source:c:\users\shaibal\documents\divide_conqure\loshagu.cpp
+	<cstdio>
+
+1497678077 source:c:\users\shaibal\documents\divide_conqure\merge_sort.cpp
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<algorithm>
+
+1497678432 source:c:\users\shaibal\documents\divide_conqure\quick_sort.cpp
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<algorithm>
+
+1497794192 source:c:\users\shaibal\documents\divide_conqure\maximum_subarray.cpp
+	<stdio.h>
+	<limits.h>
+
+1497795221 source:c:\users\shaibal\documents\divide_conqure\min_max_in_array.cpp
+	<stdio.h>
+	<stdio.h>
+

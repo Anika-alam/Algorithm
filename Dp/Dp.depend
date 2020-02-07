@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1501045823 source:c:\users\shaibal\documents\dp\coin_change.cpp
+	<stdio.h>
+	<conio.h>
+	<limits.h>
+
+1501301668 source:c:\users\shaibal\documents\dp\knap_sack.cpp
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+
+1501302254 source:c:\users\shaibal\documents\dp\greedy_knap_sack.cpp
+	<stdio.h>
+	<conio.h>
+

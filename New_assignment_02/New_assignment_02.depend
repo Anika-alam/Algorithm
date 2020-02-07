@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1502901389 source:c:\users\shaibal\documents\new_assignment_02\elementary_graph_algorithm.cpp
+	<cstdio>
+	<vector>
+	<queue>
+	<iostream>
+	<list>
+	<utility>
+

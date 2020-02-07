@@ -1,0 +1,53 @@
+//------ektu problem----//
+
+#include<stdio.h>
+#include<conio.h>
+
+int w[10], p[10], v[10][10], n, i, j, capacity, x[10] = {0};
+float greedyknapsack(int p[],int w[],int capacity)
+{
+	int i=0;
+	float price=0;
+	float load=0;
+	while(i<n && load<=capacity)
+	{
+		if(w[i]<=capacity-load)
+		{
+			printf("item %d fully taken\n",i);
+			load=load+w[i];
+			price=price+p[i];
+		}
+		else
+		{
+			printf("item %d %f kg taken\n",i,float((capacity-load)/w[i]));
+			price=price+float((capacity-load)/w[i]*p[i]);
+		}
+		i++;
+	}
+
+
+	return price;
+	getch();
+}
+int main()
+{
+
+	int n,i;
+	int profit, count = 0;
+    printf("\nEnter the number of elements : ");
+    scanf("%d", &n);
+    printf("\nEnter the profit and weights of the elements\n");
+    for (i = 0; i <= n-1; i++) {
+        printf("Item no : %d\n", i);
+        scanf("%d %d", &p[i], &w[i]);
+    }
+    printf("\nEnter the capacity \n");
+    scanf("%d", &capacity);
+
+	float val=greedyknapsack(p,w,capacity);
+	printf(" %f \n ",val);
+	getchar();
+
+	return 0;
+	getch();
+}

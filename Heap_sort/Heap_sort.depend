@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1499921677 source:c:\users\shaibal\documents\heap_sort\main.cpp
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<algorithm>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1500610420 source:c:\users\shaibal\documents\priority_queue\main.cpp
+	<cstdio>
+	<stdio.h>
+	<iostream>
+

@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1496378690 source:c:\users\shaibal\documents\home_practice\factorial.cpp
+	<cstdio>
+
+1496379236 source:c:\users\shaibal\documents\home_practice\sum_recursion.cpp
+	<cstdio>
+
+1496380071 source:c:\users\shaibal\documents\home_practice\power recursion.cpp
+	<stdio.h>
+
+1446667744 source:c:\users\shaibal\documents\home_practice\main.cpp
+	<iostream>
+
+1496380639 source:c:\users\shaibal\documents\home_practice\recursion.cpp
+	<cstdio>
+
+1509203211 source:c:\users\shaibal\documents\home_practice\fibonacci.cpp
+	<cstdio>
+	<ctime>
+	<cstdlib>
+	<cassert>
+	<algorithm>
+
