@@ -1,0 +1,75 @@
+1--a)   nlogbase2* (n)
+b) nlogbase2*(n)
+
+2---a) The running time of heapsort algorithm on an array A of length n that is already in sorted
+order is nlogbase2*(n)
+
+b)void insertKey(int A[],int heapSize, int newValue);
+1 A.heapSize = A.heapSize + 1
+2 A[heapSize-1] = -infinity
+3 Heap-Update(A;A.heapSize-1,newValue)
+
+
+c) the given priority queue is: A = {15; 13; 9; 5; 12; 8; 7; 4; 0; 6; 2}.
+to bulid max priority queue we have to re-insert it by max priority, then 
+the queue will be A={15,13,12,9,8,7,6,5,4,2,0}
+then by inserting 10, we will get:  A={15,13,12,10,9,8,7,6,5,4,2,0}
+
+
+
+4)----
+a) the necessary conditions to apply dynamic programming to solve a problem are:
+optimal substructure and overlapping substructure.
+
+b)I have got an iterative and a recursive version of the same algorithm to 
+solve a problem. I will prefer iterative version because recursive version
+takes more space and time to solve a problem.
+
+c) see khata.
+
+
+
+
+5)---
+#include<stdio.h>
+#include<conio.h>
+
+int recursiveGreedy(int n,int v[],int i,int m)
+{
+	int sum = 0;
+   for (i = 0; i < m; i++)
+   {
+      sum = sum + v[i];
+   }
+   printf("%d",sum);
+   int k=sum/n;
+
+   
+   if( k % n == 0)
+   return k;
+   else 
+	   return (k+1);
+   getch();
+	
+}
+
+
+
+int main()
+{
+	int v[100];
+	int p,m,q;
+	
+	printf("how many groups you have?\n");
+	scanf("%d",&m);
+	printf("enter the numberof group members you have:\n");
+	for(q=0;q<m;q++)
+	{
+		scanf("%d",&v[q]);
+	}
+	int n=4;
+	int val=recursiveGreedy(n,v,0,m);
+	printf(" total %d taxi were required!\n",val);
+	getch();
+	return 0;
+}

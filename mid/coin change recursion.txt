@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<conio.h>
+
+int recursiveGreedyCoinChange(int n,int v[],int i)
+{
+	if(n>0)
+	{
+		if(v[i]<=n)
+		{
+			printf("%d cents\n",v[i]);
+			return 1+recursiveGreedyCoinChange(n-v[i],v,i);
+		}
+		else
+			return recursiveGreedyCoinChange(n,v,i+1);
+	}
+	else
+		return 0;
+}
+
+
+
+int main()
+{
+	int v[100];
+	int p,n,m,q;
+	
+	printf("how many coins you have?\n");
+	scanf("%d",&m);
+	printf("enter the coins you have:\n");
+	for(q=0;q<m;q++)
+	{
+		scanf("%d",&v[q]);
+	}
+	printf("enter how much change you required:\n");
+	scanf("%d",&n);
+	int val=recursiveGreedyCoinChange(n,v,0);
+	printf(" total %d coins were required!\n",val);
+	getch();
+	return 0;
+}

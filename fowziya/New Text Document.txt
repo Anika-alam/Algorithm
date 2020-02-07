@@ -1,0 +1,77 @@
+#include<stdio.h>
+
+int find_set(int s1,int sets[])
+{
+   if(sets[s1] == s1)
+        return sets[s1];
+   else
+    {
+       sets[s1] = find_set(sets[s1],sets) ;
+       return sets[s1];
+    }
+}
+struct edge
+{
+int u; /* start point */
+int v; /* end point */
+int w; /* weight */
+} E[20];
+int main()
+{
+    int t = 0;
+    int nV;
+    int nE;
+    printf("enter no of vertex and edge: ");
+    scanf("%d %d",&nV,&nE);
+    printf("enter weight with nodes: ");
+    for(int i=0;i<nE;i++)
+        {
+            scanf("%d %d %d",&E[i].u,&E[i].v,&E[i].w);
+    }
+   // int n = 5;
+    int temp;
+
+   for (int i = 1; i <= nE; i++)
+      for (int j = 0; j <= nE- i; j++) {
+         if (E[j].w>E[j+1].w) {
+            temp = E[j].w;
+            E[j].w = E[j + 1].w;
+            E[j + 1].w = temp;
+
+             temp = E[j].u;
+            E[j].u = E[j + 1].u;
+            E[j + 1].u = temp;
+
+             temp = E[j].v;
+            E[j].v = E[j + 1].v;
+            E[j + 1].v = temp;
+         }
+      }
+      printf("after sort :\n");
+
+   for (int i = 0; i  <= nE; i++)
+    {
+      printf("%d %d %d",E[i].u,E[i].v,E[i].w);
+      printf("\n");
+   }
+    int sets[20];
+   for(int i=0;i<nV;i++)
+   {
+     sets[i] = i;
+   }
+   for(int i=0;i<=nV;i++)
+   {
+     printf("sets :%d\n",sets[i]);
+   }
+    for(int i=0;i<nV-1;i++)
+   {
+       int s1 = E[i].u;
+       int s2 = E[i].v;
+       if(find_set(s1,sets) != find_set(s2,sets))
+       {
+            t = t + E[i].w;
+   }
+   }
+   printf("total cost :%d",t);
+   return 0;
+}

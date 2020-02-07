@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<conio.h>
+int a[100];
+int findset(int u)
+{
+	if(a[u]==u)
+	
+		return a[u];
+	else
+	{
+		a[u]=findset(a[u]);
+		return a[u];
+	}
+}
+
+void unionsets(int u,int v,int size[],int a[])
+{
+	int s1=findset(u);
+	int s2=findset(v);
+	if(s1!=s2)
+	{
+		if(size[s1]>=size[s2])
+		{
+			a[s2]=s1;
+			size[s1]+=size[s2];
+		}
+		else
+		{
+			a[s1]=s2;
+			size[s2]+=size[s1];
+		}
+	}
+	printf("%d\n",a[s1]);
+	printf("%d\n",size[s2]);
+}
+int main()
+{
+	
+	int size[100];
+	
+	int n,i,index,u,v,element;
+	printf("how many sets\n");
+	scanf("%d",&n);
+	printf("enter datas:\n");
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	for(i=1;i<=n;i++)
+	{
+		size[i]=1;
+	}
+	printf("enter the data which you want to know the set number\n");
+	scanf("%d",&element);
+	for(i=0;i<=n;i++)
+	{
+		if(element==a[i])
+			index=i;
+	}
+	printf("%d",index);
+	//union
+	printf("which two datas you want to union?\n");
+	scanf("%d %d",&u,&v);
+	unionsets(u,v,size,a);
+
+	getch();
+	return 0;
+
+}

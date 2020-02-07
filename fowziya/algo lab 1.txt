@@ -1,0 +1,88 @@
+merge sort:
+
+#include<stdio.h>
+int A[20];
+int infinite = 5000;
+void Merge(int A[],int front,int mid,int rear)
+{
+
+    int L[20];
+    int R[20];
+    int n_1,n_2;
+    n_1 = mid-front+1;
+    n_2 = rear-mid;
+    int i,j;
+    for(i=0;i<=n_1-1;i++)
+    {
+        L[i] = A[front+i];
+    }
+    for(i=0;i<=n_2-1;i++)
+    {
+        R[i] = A[mid+1+i];
+    }
+    L[n_1] = infinite;
+    R[n_2] = infinite;
+    int k;
+    i=0;
+    j=0;
+    for(k=front;k<=rear;k++)
+    {
+        if(L[i] <= R[j])
+        {
+            A[k] = L[i];
+            i = i+1;
+        }
+        else
+            {
+                A[k] = R[j];
+                j++;
+            }
+    }
+
+
+
+}
+
+void Merge_Sort(int A[],int front,int rear)
+{
+
+    if(front<rear)
+    {
+        int mid;
+        mid = (front+rear)/2;
+        Merge_Sort(A,front,mid);
+        Merge_Sort(A,mid+1,rear);
+        Merge(A,front,mid,rear);
+    }
+
+}
+
+
+int main()
+{
+    //int A[20];
+    int n;
+    printf("enter no of data :");
+    scanf("%d",&n);
+    int i;
+    printf("enter elements :");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+    printf("before merge :");
+     for(i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+
+    Merge_Sort(A,0,n-1);
+    printf("\n");
+     printf("after merge: ");
+
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+
+}

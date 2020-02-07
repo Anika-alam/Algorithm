@@ -1,0 +1,180 @@
+rod cut:
+
+
+#include<stdio.h>
+
+int max(int a, int b)
+{
+    if(a>=b)
+        return a;
+    else
+    return b;
+}
+
+int Rod_Cut(int price[], int m)
+{
+
+  int val[m+1];
+   val[0] = 0;
+   int i, j;
+
+
+   for (i = 1; i<=m; i++)
+   {
+       int max_val = -1;
+       for (j = 0; j < i; j++)
+        {
+            max_val = max(max_val, price[j] + val[i-j-1]);
+        }
+       val[i] = max_val;
+   }
+   return val[m];
+}
+
+int main()
+{
+    int p[10];
+    int n;
+    printf("how many sizes are available :");
+    scanf("%d",&n);
+    printf("enter prices :");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&p[i]);
+    }
+    int L ;
+    printf("enter rod length :");
+    scanf("%d",&L);
+    int result;
+    result = Rod_Cut(p,L);
+    printf("\nMaximum  Value is %d\n",result );
+    return 0;
+}
+
+
+coin change:
+
+#include<stdio.h>
+#include<conio.h>
+#include<limits.h>
+
+
+void printcoins(int n,int s[])
+{
+
+	while(s[n]!=0)
+	{
+		printf("\n%d cents\n",s[n]);
+		n=n-s[n];
+	}
+}
+int dynamic_iterative(int n,int v[],int size)
+{
+	int i;
+	int c[100],s[100];
+	c[0]=0,s[0]=0;
+	for(i=1;i<=n;i++)
+	{
+		c[i]=INT_MAX;
+		s[i]=-1;
+		for(int j=0;j<size;j++)
+		{
+			if(i>=v[j])
+			{
+				if(c[i-v[j]]+1<c[i])
+				{
+					c[i]=c[i-v[j]]+1;
+					s[i]=v[j];
+				}
+			}
+		}
+
+	}
+	printcoins(n,s);
+	return c[n];
+
+}
+int main()
+{
+	int v[100];
+	int n,m,q;
+
+	printf("how many coins you have? :");
+	scanf("%d",&m);
+	printf("\nenter the coins you have: :");
+	for(q=0;q<m;q++)
+	{
+		scanf("%d",&v[q]);
+	}
+	printf("\nenter how much change you required:");
+	scanf("%d",&n);
+	int val=dynamic_iterative(n,v,m);
+	printf("\ntotal %d coins are required!\n",val);
+	return 0;
+}
+
+
+0_1 ;
+
+#include <stdio.h>
+#include <stdlib.h>
+#include<conio.h>
+
+
+int w[10], p[10], v[10][10], n, i, j, capacity, x[10] = {0};
+
+int max(int i, int j) {
+    return ((i > j) ? i : j);
+}
+
+int KnapSack(int i, int j) {
+    int value;
+    if (v[i][j] < 0) {
+        if (j < w[i])
+            value = KnapSack(i - 1, j);
+        else
+            value = max(KnapSack(i - 1, j), p[i] + KnapSack(i - 1, j - w[i]));
+        v[i][j] = value;
+    }
+
+    return (v[i][j]);
+}
+
+int main() {
+    int profit, count = 0;
+    printf("\nEnter the number of elements : ");
+    scanf("%d", &n);
+    printf("\nEnter the profit and weights of the elements\n");
+    for (i = 1; i <= n; i++) {
+        printf("Item no : %d\n", i);
+        scanf("%d %d", &p[i], &w[i]);
+    }
+    printf("\nEnter the capacity \n");
+    scanf("%d", &capacity);
+    for (i = 0; i <= n; i++)
+        for (j = 0; j <= capacity; j++)
+            if ((i == 0) || (j == 0))
+                v[i][j] = 0;
+            else
+                v[i][j] = -1;
+    profit = KnapSack(n, capacity);
+    i = n;
+    j = capacity;
+    while (j != 0 && i != 0) {
+        if (v[i][j] != v[i - 1][j]) {
+            x[i] = 1;
+            j = j - w[i];
+            i--;
+        } else
+            i--;
+    }
+    printf("Items in the KnapSack are : \n\n");
+    printf("Sl.no \t weight \t profit\n");
+    printf("\n----------------------------------------\n");
+    for (i = 1; i <= n; i++)
+        if (x[i])
+            printf("%d \t %d \t\t  %d\n", ++count, w[i], p[i]);
+    printf("Total profit = %d\n", profit);
+	getch();
+    return (EXIT_SUCCESS);
+}

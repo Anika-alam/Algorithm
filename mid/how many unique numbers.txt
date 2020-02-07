@@ -1,0 +1,36 @@
+PROBLEM: FIND HOW MANY UNIQUE NUMBERS
+
+
+#include<stdio.h>
+#include<vector>
+#include<conio.h>
+#include<algorithm>
+#include<stack>
+#include<queue>
+#include<set>
+
+using namespace std;
+
+int main()
+{
+	
+	set<int> s;
+	int n,i,m;
+	printf("enter the number of inputs:\n");
+	scanf("%d",&n);
+	printf("enter the inputs:");
+	for(i=0;i<n;i++){
+		scanf("%d",&m);
+
+
+		s.insert(m);
+	}
+	
+
+	
+
+	printf("unique number: %d\n",s.size());
+
+	getch();
+	return 0;
+}

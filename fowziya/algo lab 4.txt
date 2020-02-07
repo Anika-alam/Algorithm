@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<string.h>
+struct data
+{
+    char name[10];
+    int weight;
+    int price;
+};
+int main()
+{
+    struct data d;
+    int pw;
+    int a[4];
+     printf("enter data information :\n");
+    int i,j=0;
+    for(i=0;i<4;i++)
+    {
+    printf("enter name :");
+    scanf("%s",d.name);
+    printf("enter weight :");
+    scanf("%d",&d.weight);
+    printf("enter price: ");
+    scanf("%d",&d.price);
+    printf("\n");
+    pw = d.price/d.weight;
+    a[j] = pw;
+    j++;
+    }
+    int capacity;
+    printf("enter capacity :");
+    scanf("%d",&capacity);
+    for(i=0;i<4;i++)
+    {
+        printf("%d  ",a[i]);
+    }
+
+    int c,y,swap;
+     for (c = 0 ; c < ( 5 - 1 ); c++)
+  {
+    for (y = 0 ; y < 5 - c - 1; y++)
+    {
+      if (a[y] < a[y+1])
+      {
+        swap       = a[y];
+        a[y]   = a[y+1];
+        a[y+1] = swap;
+      }
+    }
+  }
+  printf("\n");
+  for(i=0;i<5;i++)
+    {
+        printf("%d  ",a[i]);
+    }
+    int w =0;
+    while(w<=capacity)
+    {
+        for(i=0;i<5;i++)
+        {
+            if(a[i]<= capacity)
+            {
+                printf("%d",a[i]);
+            }
+        }
+
+    }
+    return 0;
+}

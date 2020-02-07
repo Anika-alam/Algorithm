@@ -1,0 +1,324 @@
+coin change :
+
+#include<stdio.h>
+#include<conio.h>
+
+int recursiveGreedyCoinChange(int n,int v[],int i)
+{
+	if(n>0)
+	{
+		if(v[i]<=n)
+		{
+			printf("%d cents\n",v[i]);
+			return 1+recursiveGreedyCoinChange(n-v[i],v,i);
+		}
+		else
+			return recursiveGreedyCoinChange(n,v,i+1);
+	}
+	else
+		return 0;
+}
+
+
+
+int main()
+{
+	int v[100];
+	int p,n,m,q;
+
+	printf("how many coins you have?\n");
+	scanf("%d",&m);
+	printf("enter the coins you have:\n");
+	for(q=0;q<m;q++)
+	{
+		scanf("%d",&v[q]);
+	}
+	printf("enter how much change you required:\n");
+	scanf("%d",&n);
+	int val=recursiveGreedyCoinChange(n,v,0);
+	printf(" total %d coins were required!\n",val);
+	getch();
+	return 0;
+}
+
+
+knapsack :
+
+#include <stdio.h>
+#include <stdlib.h>
+#include<conio.h>
+
+int w[10], p[10], v[10][10], n, i, j, capacity, x[10] = {0};
+
+int max(int i, int j) {
+    return ((i > j) ? i : j);
+}
+
+int KnapSack(int i, int j) {
+    int value;
+    if (v[i][j] < 0) {
+        if (j < w[i])
+            value = KnapSack(i - 1, j);
+        else
+            value = max(KnapSack(i - 1, j), p[i] + KnapSack(i - 1, j - w[i]));
+        v[i][j] = value;
+    }
+    return (v[i][j]);
+}
+
+int main() {
+    int profit, count = 0;
+    printf("\nEnter the number of elements : ");
+    scanf("%d", &n);
+    printf("\nEnter the profit and weights of the elements\n");
+    for (i = 1; i <= n; i++) {
+        printf("Item no : %d\n", i);
+        scanf("%d %d", &p[i], &w[i]);
+    }
+    printf("\nEnter the capacity \n");
+    scanf("%d", &capacity);
+    for (i = 0; i <= n; i++)
+        for (j = 0; j <= capacity; j++)
+            if ((i == 0) || (j == 0))
+                v[i][j] = 0;
+            else
+                v[i][j] = -1;
+    profit = KnapSack(n, capacity);
+    i = n;
+    j = capacity;
+    while (j != 0 && i != 0) {
+        if (v[i][j] != v[i - 1][j]) {
+            x[i] = 1;
+            j = j - w[i];
+            i--;
+        } else
+            i--;
+    }
+    printf("Items in the KnapSack are : \n\n");
+    printf("Sl.no \t weight \t profit\n");
+    printf("\n----------------------------------------\n");
+    for (i = 1; i <= n; i++)
+        if (x[i])
+            printf("%d \t %d \t\t  %d\n", ++count, w[i], p[i]);
+    printf("Total profit = %d\n", profit);
+	getch();
+    return 0;
+}
+  
+
+platform:
+
+
+#include<iostream>
+#include<algorithm>
+#include<conio.h>
+using namespace std;
+
+// Returns minimum number of platforms reqquired
+int findPlatform(int arr[], int dep[], int n)
+{
+   // Sort arrival and departure arrays
+   sort(arr, arr+n);
+   sort(dep, dep+n);
+
+   // plat_needed indicates number of platforms needed at a time
+   int plat_needed = 1, result = 1;
+   int i = 1, j = 0;
+
+   // Similar to merge in merge sort to process all events in sorted order
+   while (i < n && j < n)
+   {
+      // If next event in sorted order is arrival, increment count of
+      // platforms needed
+      if (arr[i] < dep[j])
+      {
+          plat_needed++;
+          i++;
+          if (plat_needed > result)  // Update result if needed
+              result = plat_needed;
+      }
+      else // Else decrement count of platforms needed
+      {
+          plat_needed--;
+          j++;
+      }
+   }
+
+   return result;
+}
+
+// Driver program to test methods of graph class
+int main()
+{
+    int arr[100];
+    int dep[100];
+	int n,i,j;
+	printf("how many trains?\n");
+	scanf("%d",&n);
+   printf("enter arrival time\n");
+   for(i=0;i<n;i++)
+   {
+	   scanf("%d",&arr[i]);
+   }
+    printf("enter departure time\n");
+   for(j=0;j<n;j++)
+   {
+	   scanf("%d",&dep[j]);
+   }
+	int l=findPlatform(arr, dep, n);
+
+    printf( "Minimum Number of Platforms Required =%d ",l);
+	getch();
+    return 0;
+}
+
+
+priority queue:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include<conio.h>
+#define MAX 100
+ 
+void insert_by_priority(int);
+void delete_by_priority(int);
+void create();
+void check(int);
+void display_pqueue();
+ 
+int priority_que[MAX];
+int front, rear;
+ 
+void main()
+{
+    int n, ch;
+ 
+    printf("\n1 - Insert an element into queue");
+    printf("\n2 - Delete an element from queue");
+    printf("\n3 - Display queue elements");
+    printf("\n4 - Exit");
+ 
+    create();
+ 
+    while (1)
+    {
+        printf("\nEnter your choice : ");    
+        scanf("%d", &ch);
+ 
+        switch (ch)
+        {
+        case 1: 
+            printf("\nEnter value to be inserted : ");
+            scanf("%d",&n);
+            insert_by_priority(n);
+            break;
+        case 2:
+            printf("\nEnter value to delete : ");
+            scanf("%d",&n);
+            delete_by_priority(n);
+            break;
+        case 3: 
+            display_pqueue();
+            break;
+        case 4: 
+            exit(0);
+        default: 
+            printf("\nChoice is incorrect, Enter a correct choice");
+        }
+    }
+	getch();
+}
+ 
+
+void create()//queue create
+{
+    front = rear = -1;
+}
+ 
+
+void insert_by_priority(int data)//function er maddhome insert queue te
+{
+    if (rear >= MAX - 1)
+    {
+        printf("\nQueue overflow no more elements can be inserted");
+        return;
+    }
+    if ((front == -1) && (rear == -1))
+    {
+        front++;
+        rear++;
+        priority_que[rear] = data;
+        return;
+    }    
+    else
+        check(data);
+    rear++;
+}
+ 
+
+void check(int data)//checking priority & element boshano max priority unujai
+{
+    int i,j;
+ 
+    for (i = 0; i <= rear; i++)
+    {
+        if (data >= priority_que[i])
+        {
+            for (j = rear + 1; j > i; j--)
+            {
+                priority_que[j] = priority_que[j - 1];
+            }
+            priority_que[i] = data;
+            return;
+        }
+    }
+    priority_que[i] = data;
+}
+ 
+/* Function to delete an element from queue */
+void delete_by_priority(int data)//priority queue theke delete function deye
+{
+    int i;
+ 
+    if ((front==-1) && (rear==-1))
+    {
+        printf("\nQueue is empty no elements to delete");
+        return;
+    }
+ 
+    for (i = 0; i <= rear; i++)
+    {
+        if (data == priority_que[i])
+        {
+            for (; i < rear; i++)
+            {
+                priority_que[i] = priority_que[i + 1];
+            }
+ 
+        priority_que[i] = -99;
+        rear--;
+ 
+        if (rear == -1) 
+            front = -1;
+        return;
+        }
+    }
+    printf("\n%d not found in queue to delete", data);
+}
+ 
+
+void display_pqueue()/* Function to display queue elements */
+{
+    if ((front == -1) && (rear == -1))
+    {
+        printf("\nQueue is empty");
+        return;
+    }
+ 
+    for (; front <= rear; front++)
+    {
+        printf(" %d ", priority_que[front]);
+    }
+ 
+    front = 0;
+}
